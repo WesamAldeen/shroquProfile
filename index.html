@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>شروق مقداد | كاتبة محتوى وباحثة قانونية</title>
+    
+    <!-- أيقونة المتصفح -->
+    <link rel="icon" type="image/png" href="sh.png">
+
+    <!-- خط تجوال العصري الفاخر (Tajawal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           1. المتغيرات والهوية اللونية والخطوط
+           ========================================== */
+        :root {
+            --bg-deep: #121113;
+            --bg-card: rgba(28, 25, 30, 0.7);
+            --bg-card-hover: rgba(42, 33, 45, 0.85);
+            --primary-accent: #C48B9F;
+            --accent-gold: #E0A96D;
+            --text-light: #F7F5F8;
+            --text-subtle: #C3BDC7;
+            --border-color: rgba(196, 139, 159, 0.25);
+            --border-hover: rgba(224, 169, 109, 0.5);
+            --glass-blur: blur(18px);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* منع التجاوز الأفقي والسكرول بالعرض نهائياً */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        @media (min-width: 901px) {
+            * { cursor: none; }
+        }
+
+        @media (max-width: 900px) {
+            * { cursor: auto; }
+            .custom-cursor, .cursor-dot { display: none !important; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-light);
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================
+           2. خلفية الجسيمات (Canvas)
+           ========================================== */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==========================================
+           3. مؤشر الماوس المخصص
+           ========================================== */
+        .custom-cursor {
+            width: 35px;
+            height: 35px;
+            border: 1px solid var(--primary-accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            backdrop-filter: blur(2px);
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-hover {
+            width: 60px;
+            height: 60px;
+            background: rgba(196, 139, 159, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        /* ==========================================
+           4. القائمة العلوية Navigation
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: var(--glass-blur);
+            background: rgba(18, 17, 19, 0.85);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .logo-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-light);
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--primary-accent);
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-subtle);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-light);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .btn-header {
+            padding: 8px 20px;
+            border: 1px solid var(--primary-accent);
+            border-radius: 40px;
+            color: var(--primary-accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .btn-header:hover {
+            background: var(--primary-accent);
+            color: var(--bg-deep);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--text-light);
+            background: none;
+            border: none;
+        }
+
+        /* ==========================================
+           5. القسم الرئيسي Hero Section
+           ========================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .badge-seller {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(224, 169, 109, 0.1);
+            border: 1px solid rgba(224, 169, 109, 0.35);
+            border-radius: 30px;
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            color: var(--primary-accent);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-subtle);
+            margin-bottom: 30px;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            padding: 12px 28px;
+            background: var(--primary-accent);
+            color: var(--bg-deep);
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 8px 20px rgba(196, 139, 159, 0.25);
+        }
+
+        .btn-main:hover {
+            background: transparent;
+            color: var(--primary-accent);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            padding: 12px 28px;
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-light);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* إطار الصورة الشخصية الفاخر مع تفعيل خاصية الـ Tilt ثلاثي الأبعاد */
+        .profile-img-container {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            margin: 0 auto;
+            border-radius: 20px;
+            padding: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.4s, background 0.4s, box-shadow 0.4s;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .profile-img-container:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            box-shadow: 0 30px 60px rgba(196, 139, 159, 0.2);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            max-height: 420px;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
+            transform: translateZ(20px); /* تأثير العمق ثلاثي الأبعاد للصورة */
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px 24px;
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        /* ==========================================
+           6. الإحصائيات (Stats Bar)
+           ========================================== */
+        .stats-section {
+            padding: 40px 5%;
+            background: rgba(28, 25, 30, 0.5);
+            border-y: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .stat-box h3 {
+            font-size: 2.6rem;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 6px;
+            font-weight: 900;
+        }
+
+        .stat-box p {
+            color: var(--text-subtle);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ==========================================
+           7. الأقسام والخدمات
+           ========================================== */
+        .section-padding {
+            padding: 90px 5%;
+            position: relative;
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .sub-title {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .service-icon {
+            font-size: 1.8rem;
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-subtle);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ==========================================
+           8. التسلسل الزمني للخبرات (Timeline)
+           ========================================== */
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 50%;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary-accent), var(--accent-gold), transparent);
+            transform: translateX(50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 35px;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            right: 0;
+            padding-left: 35px;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) {
+            right: 50%;
+            padding-right: 35px;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--bg-deep);
+            border: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot { left: -8px; }
+        .timeline-item:nth-child(even) .timeline-dot { right: -8px; }
+
+        .timeline-year {
+            display: inline-block;
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        /* ==========================================
+           9. المؤهلات ومعرض الأعمال
+           ========================================== */
+        .academic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(196, 139, 159, 0.15);
+            color: var(--primary-accent);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            border: 1px solid rgba(196, 139, 159, 0.3);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .portfolio-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .btn-link {
+            color: var(--primary-accent);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-link:hover {
+            color: var(--accent-gold);
+            transform: translateX(-5px);
+        }
+
+        /* ==========================================
+           10. قسم التواصل والأيقونات
+           ========================================== */
+        .contact-box {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .social-icons-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .icon-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            position: relative;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .icon-card:hover {
+            transform: translateY(-5px) scale(1.08);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 20px rgba(224, 169, 109, 0.25);
+        }
+
+        .icon-card.whatsapp:hover { color: #25D366; border-color: #25D366; }
+        .icon-card.telegram:hover { color: #229ED9; border-color: #229ED9; }
+        .icon-card.linkedin:hover { color: #0A66C2; border-color: #0A66C2; }
+
+        .icon-tooltip {
+            position: absolute;
+            bottom: -28px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-subtle);
+            white-space: nowrap;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .icon-card:hover .icon-tooltip {
+            opacity: 1;
+            bottom: -32px;
+        }
+
+        footer {
+            padding: 30px 5%;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-subtle);
+            font-size: 0.85rem;
+            background: rgba(18, 17, 19, 0.9);
+        }
+
+        /* ==========================================
+           11. التجاوب المحسّن للهواتف
+           ========================================== */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-btns, .badge-seller { justify-content: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-title { font-size: 2.5rem; }
+            .stats-section { grid-template-columns: repeat(2, 1fr); }
+            
+            .timeline::before { right: 16px; }
+            .timeline-item {
+                width: 100% !important;
+                padding-right: 45px !important;
+                padding-left: 0 !important;
+                text-align: right !important;
+            }
+            .timeline-item:nth-child(even) { right: 0; }
+            .timeline-dot { right: 8px !important; left: auto !important; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 4%; }
+            .nav-menu {
+                position: fixed;
+                top: 65px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 65px);
+                background: rgba(18, 17, 19, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                transition: var(--transition);
+                backdrop-filter: var(--glass-blur);
+            }
+            .nav-menu.active { right: 0; }
+            .mobile-toggle { display: block; }
+            .btn-header { display: none; }
+
+            .hero { padding: 100px 4% 40px; min-height: auto; }
+            .hero-title { font-size: 2.1rem; }
+            .hero-desc { font-size: 1rem; }
+            
+            .main-title { font-size: 2rem; }
+            .section-padding { padding: 70px 4%; }
+            
+            .stats-section { grid-template-columns: 1fr; gap: 15px; }
+            .stat-box h3 { font-size: 2.2rem; }
+            
+            .btn-main, .btn-outline { width: 100%; text-align: center; justify-content: center; padding: 12px 20px; font-size: 0.9rem; }
+            .hero-btns { flex-direction: column; width: 100%; }
+            
+            .contact-box h2 { font-size: 2rem !important; }
+            .icon-card { width: 46px; height: 46px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية شبكة الجسيمات التفاعلية -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- مؤشر ماوس مخصص -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- القائمة العلوية -->
+    <header>
+        <div class="logo-box">
+            <span class="logo-name">شروق مقداد</span>
+            <span class="logo-sub">كاتبة محتوى وباحثة قانونية</span>
+        </div>
+        <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#hero" onclick="toggleMenu()">الرئيسية</a></li>
+            <li><a href="#about" onclick="toggleMenu()">نبذة عني</a></li>
+            <li><a href="#services" onclick="toggleMenu()">الخدمات</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">الخبرات</a></li>
+            <li><a href="#degrees" onclick="toggleMenu()">المؤهلات</a></li>
+            <li><a href="#portfolio" onclick="toggleMenu()">الأعمال</a></li>
+        </ul>
+        <a href="#contact" class="btn-header hover-trigger">تواصل معي</a>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section id="hero" class="hero">
+        <div class="hero-grid">
+            <div>
+                <div class="badge-seller hover-trigger">
+                    <i class="fa-solid fa-star"></i> بائع مميز على منصات العمل الحر (خمسات ومستقل)
+                </div>
+                <h1 class="hero-title">نحيك الكلمات بـ <span>دقة القانون</span> وشغف الإبداع.</h1>
+                <p class="hero-desc">أساعد العلامات التجارية والشركات في الوصول لجمهورها ومضاعفة أثرها عبر صناعة محتوى تسويقي وقانوني رصين ومحتوى متوافق مع معايير السيو (SEO).</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-main hover-trigger">تواصل معي الآن</a>
+                    <a href="#portfolio" class="btn-outline hover-trigger">نماذج من أعمالي</a>
+                </div>
+            </div>
+
+            <!-- حاوية الصورة الشخصية مع تأثير الإمالة ثلاثي الأبعاد -->
+            <div id="tilt-profile" class="profile-img-container hover-trigger">
+                <img src="sh.png" alt="شروق مقداد" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- شريط الأرقام الإحصائية -->
+    <section class="stats-section">
+        <div class="stat-box hover-trigger">
+            <h3>+1000</h3>
+            <p>مقالة منشورة عبر الشبكة</p>
+        </div>
+        <div class="stat-box hover-trigger">
+            <h3>155+</h3>
+            <p>عميل وخدمة مكتملة</p>
+        </div>
+        <div class="stat-box hover-trigger">
+            <h3>23</h3>
+            <p>وكالة تسويق إلكتروني</p>
+        </div>
+        <div class="stat-box hover-trigger">
+            <h3>+15k</h3>
+            <p>متابع ومؤثرة على LinkedIn</p>
+        </div>
+    </section>
+
+    <!-- نبذة عني -->
+    <section id="about" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">من هي شروق مقداد؟</span>
+            <h2 class="main-title">نبذة عني</h2>
+        </div>
+        <div class="glass-card hover-trigger" style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-subtle); font-size: 1.05rem; line-height: 2;">
+            <p>أنا كاتبة محتوى وباحثة متخصصة، أكرّس خبرتي لمساعدة العلامات التجارية والشركات في تحقيق أهدافها من خلال كتابة محتوى ذكي ينسجم مع هوية العميل ويصل مباشرة للجمهور المستهدف بأي صورة من صور المحتوى.</p>
+            <p style="margin-top: 15px;">إلى جانب نشاطي البارز كبائع مميز على منصات العمل الحر، أحظى بتأثير واسع على شبكات التواصل الاجتماعي ومجتمع العمل الحر بتزويد المتابعين بفنون صياغة المحتوى والبحث القانوني.</p>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">حلول احترافية متكاملة</span>
+            <h2 class="main-title">خدماتي المتميزة</h2>
+        </div>
+        <div class="services-grid">
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-pen-nib service-icon"></i>
+                <h3>المقالات وتوافق SEO</h3>
+                <p>كتابة مقالات متعمقة وغنية متوافقة تماماً مع معايير محركات البحث لضمان تصدر موقعك.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-building service-icon"></i>
+                <h3>الملفات التعريفية للشركات</h3>
+                <p>إعداد بروفايلات الشركات والمؤسسات بنبرة صوت تعكس الفخامة والموثوقية.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-hashtag service-icon"></i>
+                <h3>محتوى منصات التواصل</h3>
+                <p>إعداد الخطط الاستراتيجية وكتابة المحتوى التسويقي الجذاب لمنصات التواصل الاجتماعي.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-lightbulb service-icon"></i>
+                <h3>أسماء العلامات التجارية</h3>
+                <p>ابتكار واختيار أسماء حصرية ومميزة تعبر عن روح العلامة التجارية وتلتصق بالأذهان.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-scale-balanced service-icon"></i>
+                <h3>الأوراق والخطابات القانونية</h3>
+                <p>إعداد الخطابات الرسمية والاتفاقات والأبحاث القانونية والأوراق الحقوقية بدقة وصياغة متينة.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-file-invoice service-icon"></i>
+                <h3>الأبحاث والتقارير العلمية</h3>
+                <p>صياغة التقارير والأبحاث المتخصصة وتحديداً في القانون الدولي والدراسات الأكاديمية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الخبرات والمشاريع -->
+    <section id="experience" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">مسيرة حافلة بالإنجازات</span>
+            <h2 class="main-title">الخبرات والمشاريع (2020 - 2026)</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2026م</span>
+                    <h4 style="font-size: 1.15rem;">موقع عاجل للوظائف في السعودية</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى ومتخصصة مقالات توظيف وتوجيه مهني.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2025م - 2022م</span>
+                    <h4 style="font-size: 1.15rem;">شركة DT1 للتسويق الإلكتروني</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى ومساعد إداري.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2024م</span>
+                    <h4 style="font-size: 1.15rem;">شركة Uni Scope</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى وصانعة استراتيجيات نصوص.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2023م</span>
+                    <h4 style="font-size: 1.15rem;">منصة Noon</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كتابة المحتوى التسويقي والإعلاني.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2022م</span>
+                    <h4 style="font-size: 1.15rem;">مواقع "الرابح" و "كويتيون في أمريكا"</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كتابة محتوى تقني وتثقيفي متنوع.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2021م - 2020م</span>
+                    <h4 style="font-size: 1.15rem;">Sky Marketing & أدفكيس</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى إعلاني وتجاري.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المؤهلات العلمية -->
+    <section id="degrees" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">الخلفية الأكاديمية والقانونية</span>
+            <h2 class="main-title">الدرجات العلمية والرخص</h2>
+        </div>
+        <div class="academic-grid">
+            <div class="glass-card hover-trigger">
+                <span class="grade-badge">تقدير ممتاز / جيد جداً</span>
+                <h3 style="font-size: 1.4rem; margin-bottom: 8px;">ليسانس حقوق (تخصص قانون)</h3>
+                <p style="color: var(--accent-gold); font-size: 0.85rem; margin-bottom: 12px; font-weight: 700;">جامعة الأزهر بغزة (2012 – 2017)</p>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">حاصلة على رخصة مزاولة مهنة المحاماة بشقيها النظامي والشرعي.</p>
+            </div>
+            <div class="glass-card hover-trigger">
+                <span class="grade-badge">تقدير جيد جداً</span>
+                <h3 style="font-size: 1.4rem; margin-bottom: 8px;">دبلوم الدراسات الفلسطينية</h3>
+                <p style="color: var(--accent-gold); font-size: 0.85rem; margin-bottom: 12px; font-weight: 700;">أكاديمية دراسات اللاجئين - لندن (2020 – 2022)</p>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">إعداد الدراسات والأبحاث والتقارير العلمية وتحديداً في القانون الدولي.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الأعمال -->
+    <section id="portfolio" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">أرشيف الإبداع</span>
+            <h2 class="main-title">أعمال سابقة ومشاريع</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">موقع عاجل للوظائف</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة مقالات متخصصة في التوظيف ومعايير سوق العمل السعودي.</p>
+                </div>
+                <a href="https://ajel.sa" target="_blank" class="btn-link">زيارة الموقع ←</a>
+            </div>
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">مجلة جوك الإلكترونية</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة مقالات متعمقة في مجالات متنوعة وثقافية.</p>
+                </div>
+                <a href="https://www.jewk.com" target="_blank" class="btn-link">زيارة المجلة ←</a>
+            </div>
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">الملفات التعريفية للشركات</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">صياغة وتجهيز الملف التعريفي لعدة شركات سعودية وعربية.</p>
+                </div>
+                <span class="btn-link" style="color: var(--text-subtle);">ملفات معتمدة</span>
+            </div>
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">شركة سليمة نت</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة وإعداد المقالات التسويقية والمعلوماتية للشركة.</p>
+                </div>
+                <span class="btn-link" style="color: var(--text-subtle);">أعمال منشورة</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- التواصل -->
+    <section id="contact" class="section-padding">
+        <div class="glass-card contact-box hover-trigger">
+            <span class="sub-title">تواصل وتفاعل</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 12px;">لنبدأ العمل معاً على مشروعك القادم</h2>
+            <p style="color: var(--text-subtle); font-size: 0.95rem;">اضغط على أي من الأيقونات أدناه للتواصل المباشر معي:</p>
+            
+            <div class="social-icons-wrapper">
+                <a href="https://wa.me/972597305187" target="_blank" class="icon-card whatsapp hover-trigger" title="مراسلة واتساب">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span class="icon-tooltip">00972597305187</span>
+                </a>
+
+                <a href="https://telegram.me/Shurooq_1994" target="_blank" class="icon-card telegram hover-trigger" title="مراسلة تليجرام">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span class="icon-tooltip">Shurooq_1994</span>
+                </a>
+
+                <a href="https://lnkd.in/p/dBNiQ6pC" target="_blank" class="icon-card linkedin hover-trigger" title="حساب LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <span class="icon-tooltip">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <p>© 2026 جميع الحقوق محفوظة لـ شروق مقداد | كاتبة محتوى وباحثة قانونية.</p>
+    </footer>
+
+    <!-- جافا سكريبت للتأثيرات والحركة -->
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navMenu');
+            nav.classList.toggle('active');
+        }
+
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        const hoverTriggers = document.querySelectorAll('.hover-trigger, a, button');
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        hoverTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            trigger.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+
+        // تأثير الإمالة ثلاثي الأبعاد للصورة الشخصية حصرياً
+        const profileCard = document.getElementById('tilt-profile');
+        if (profileCard) {
+            profileCard.addEventListener('mousemove', (e) => {
+                const rect = profileCard.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                profileCard.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-5px)`;
+            });
+
+            profileCard.addEventListener('mouseleave', () => {
+                profileCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+        }
+
+        // خلفية الجسيمات التفاعلية
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = Math.min(window.innerWidth / 15, 60);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.4 ? 'rgba(196, 139, 159, ' : 'rgba(224, 169, 109, ';
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                let dx = mouseX - this.x;
+                let dy = mouseY - this.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    this.x -= (dx / dist) * 0.6;
+                    this.y -= (dy / dist) * 0.6;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + this.alpha + ')';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(196, 139, 159, ${0.12 - dist / 1200})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            drawLines();
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>
