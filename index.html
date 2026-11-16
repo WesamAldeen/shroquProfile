@@ -886,7 +886,7 @@
         </div>
     </section>
 
-    <!-- معرض الأعمال -->
+   <!-- معرض الأعمال -->
     <section id="portfolio" class="section-padding">
         <div class="section-title-wrap">
             <span class="sub-title">أرشيف الإبداع</span>
@@ -909,132 +909,184 @@
             </div>
             <div class="glass-card portfolio-card hover-trigger">
                 <div>
-                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">منصة رقيم</h3>
-                    <p style="color: var(--text-subtle); font-size: 0.9rem;">صناعة ونشر محتوى مقالي متنوع ومعري في شتى المجالات.</p>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">الملفات التعريفية للشركات</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">صياغة وتجهيز الملف التعريفي لعدة شركات سعودية وعربية.</p>
                 </div>
-                <a href="https://www.eqeem.com" target="_blank" class="btn-link">زيارة المنصة ←</a>
+                <span class="btn-link" style="color: var(--text-subtle);">ملفات معتمدة</span>
             </div>
             <div class="glass-card portfolio-card hover-trigger">
                 <div>
-                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">موقع الخليج الإخباري</h3>
-                    <p style="color: var(--text-subtle); font-size: 0.9rem;">إعداد وصياغة تقارير ومقالات إخبارية متوافقة مع قواعد السيو.</p>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">شركة سليمة نت</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة وإعداد المقالات التسويقية والمعلوماتية للشركة.</p>
                 </div>
-                <a href="https://www.alkhaleej.ae" target="_blank" class="btn-link">زيارة الموقع ←</a>
+                <span class="btn-link" style="color: var(--text-subtle);">أعمال منشورة</span>
             </div>
         </div>
     </section>
 
-    <!-- جافاسكريبت التفاعلات (Canvas والـ Tilt ومؤشر الماوس) -->
+    <!-- التواصل -->
+    <section id="contact" class="section-padding">
+        <div class="glass-card contact-box hover-trigger">
+            <span class="sub-title">تواصل وتفاعل</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 12px;">لنبدأ العمل معاً على مشروعك القادم</h2>
+            <p style="color: var(--text-subtle); font-size: 0.95rem;">اضغط على أي من الأيقونات أدناه للتواصل المباشر معي:</p>
+            
+            <div class="social-icons-wrapper">
+                <a href="https://wa.me/972597305187" target="_blank" class="icon-card whatsapp hover-trigger" title="مراسلة واتساب">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span class="icon-tooltip">00972597305187</span>
+                </a>
+
+                <a href="https://telegram.me/Shurooq_1994" target="_blank" class="icon-card telegram hover-trigger" title="مراسلة تليجرام">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span class="icon-tooltip">Shurooq_1994</span>
+                </a>
+
+                <a href="https://lnkd.in/p/dBNiQ6pC" target="_blank" class="icon-card linkedin hover-trigger" title="حساب LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <span class="icon-tooltip">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <p>© 2026 جميع الحقوق محفوظة لـ شروق مقداد | كاتبة محتوى وباحثة قانونية.</p>
+    </footer>
+
+    <!-- جافا سكريبت للتأثيرات والحركة -->
     <script>
-        // قائمة الموبايل
         function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
+            const nav = document.getElementById('navMenu');
+            nav.classList.toggle('active');
         }
 
-        // مؤشر الماوس المخصص
         const cursor = document.querySelector('.custom-cursor');
-        const dot = document.querySelector('.cursor-dot');
-        const hoverTriggers = document.querySelectorAll('.hover-trigger');
+        const cursorDot = document.querySelector('.cursor-dot');
+        const hoverTriggers = document.querySelectorAll('.hover-trigger, a, button');
 
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.top = e.clientY + 'px';
-            cursor.style.left = e.clientX + 'px';
-            dot.style.top = e.clientY + 'px';
-            dot.style.left = e.clientX + 'px';
-        });
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
 
-        hoverTriggers.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-        });
-
-        // تأثير الإمالة ثلاثي الأبعاد للصورة الشخصية
-        const tiltCard = document.getElementById('tilt-profile');
-        if(tiltCard) {
-            tiltCard.addEventListener('mousemove', (e) => {
-                const rect = tiltCard.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                tiltCard.style.transform = `perspective(1000px) rotateX(${-y / 10}deg) rotateY(${x / 10}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            tiltCard.addEventListener('mouseleave', () => {
-                tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-            });
-        }
-
-        // خلفية الجسيمات التفاعلية (Canvas) بلون أخضر ورمادي هادئ
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        const particles = [];
-        const count = Math.min(window.innerWidth / 15, 60);
-
-        for(let i=0; i<count; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: (Math.random() - 0.5) * 0.6,
-                radius: Math.random() * 1.5 + 1
-            });
-        }
-
-        let mouseX = -1000, mouseY = -1000;
-        window.addEventListener('mousemove', (e) => {
+        document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
         });
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'rgba(46, 111, 64, 0.4)';
-            ctx.strokeStyle = 'rgba(46, 111, 64, 0.15)';
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
 
-            particles.forEach((p, index) => {
-                p.x += p.vx;
-                p.y += p.vy;
+        hoverTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            trigger.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
 
-                if(p.x < 0 || p.x > width) p.vx *= -1;
-                if(p.y < 0 || p.y > height) p.vy *= -1;
+        // تأثير الإمالة ثلاثي الأبعاد للصورة الشخصية حصرياً
+        const profileCard = document.getElementById('tilt-profile');
+        if (profileCard) {
+            profileCard.addEventListener('mousemove', (e) => {
+                const rect = profileCard.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                profileCard.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-5px)`;
+            });
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fill();
+            profileCard.addEventListener('mouseleave', () => {
+                profileCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+        }
 
-                // التفاعل مع الماوس
-                let dx = mouseX - p.x;
-                let dy = mouseY - p.y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
-                if(dist < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(mouseX, mouseY);
-                    ctx.stroke();
+        // خلفية الجسيمات التفاعلية
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = Math.min(window.innerWidth / 15, 60);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.4 ? 'rgba(196, 139, 159, ' : 'rgba(224, 169, 109, ';
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                let dx = mouseX - this.x;
+                let dy = mouseY - this.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    this.x -= (dx / dist) * 0.6;
+                    this.y -= (dy / dist) * 0.6;
                 }
+            }
 
-                for(let j = index + 1; j < particles.length; j++) {
-                    let p2 = particles[j];
-                    let d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if(d < 100) {
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + this.alpha + ')';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
                         ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(196, 139, 159, ${0.12 - dist / 1200})`;
+                        ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
                 }
-            });
-            requestAnimationFrame(animate);
+            }
         }
-        animate();
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            drawLines();
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
     </script>
 </body>
 </html>
