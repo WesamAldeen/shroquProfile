@@ -15,675 +15,7 @@
     
     <!-- أيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* ==========================================
-           1. المتغيرات والهوية اللونية والخطوط
-           ========================================== */
-        :root {
-            --bg-deep: #0f1412;
-            --bg-card: rgba(22, 30, 26, 0.75);
-            --bg-card-hover: rgba(30, 42, 36, 0.9);
-            --primary-accent: #2e6f40;
-            --accent-gold: #D4AF37;
-            --text-light: #F4F6F5;
-            --text-subtle: #B8C2BC;
-            --border-color: rgba(46, 111, 64, 0.3);
-            --border-hover: rgba(212, 175, 55, 0.5);
-            --glass-blur: blur(18px);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* منع التجاوز الأفقي والسكرول بالعرض نهائياً */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden !important;
-            box-sizing: border-box;
-        }
-
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-
-        @media (min-width: 901px) {
-            * { cursor: none; }
-        }
-
-        @media (max-width: 900px) {
-            * { cursor: auto; }
-            .custom-cursor, .cursor-dot { display: none !important; }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-light);
-            font-family: 'Tajawal', sans-serif;
-            line-height: 1.8;
-            position: relative;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* ==========================================
-           2. خلفية الجسيمات (Canvas)
-           ========================================== */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* ==========================================
-           3. مؤشر الماوس المخصص
-           ========================================== */
-        .custom-cursor {
-            width: 35px;
-            height: 35px;
-            border: 1px solid var(--primary-accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
-            backdrop-filter: blur(2px);
-        }
-
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-hover {
-            width: 60px;
-            height: 60px;
-            background: rgba(46, 111, 64, 0.15);
-            border-color: var(--accent-gold);
-        }
-
-        /* ==========================================
-           4. القائمة العلوية Navigation
-           ========================================== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: var(--glass-blur);
-            background: rgba(15, 20, 18, 0.85);
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .logo-box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-name {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--text-light);
-            line-height: 1.1;
-        }
-
-        .logo-sub {
-            font-size: 0.75rem;
-            color: #5bb373;
-            font-weight: 500;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text-subtle);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gold);
-            transition: var(--transition);
-        }
-
-        .nav-menu a:hover {
-            color: var(--text-light);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .btn-header {
-            padding: 8px 20px;
-            border: 1px solid var(--primary-accent);
-            border-radius: 40px;
-            color: #5bb373;
-            font-size: 0.8rem;
-            font-weight: 700;
-            transition: var(--transition);
-            background: transparent;
-        }
-
-        .btn-header:hover {
-            background: var(--primary-accent);
-            color: var(--text-light);
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.6rem;
-            color: var(--text-light);
-            background: none;
-            border: none;
-        }
-
-        /* ==========================================
-           5. القسم الرئيسي Hero Section
-           ========================================== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 5% 60px;
-            position: relative;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-            width: 100%;
-        }
-
-        .badge-seller {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(46, 111, 64, 0.15);
-            border: 1px solid rgba(46, 111, 64, 0.35);
-            border-radius: 30px;
-            color: #5bb373;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            backdrop-filter: var(--glass-blur);
-        }
-
-        .hero-title {
-            font-size: 3.2rem;
-            line-height: 1.25;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .hero-title span {
-            color: #5bb373;
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-subtle);
-            margin-bottom: 30px;
-            max-width: 600px;
-            font-weight: 400;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn-main {
-            padding: 12px 28px;
-            background: var(--primary-accent);
-            color: var(--text-light);
-            border-radius: 40px;
-            font-weight: 800;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            border: 1px solid var(--primary-accent);
-            box-shadow: 0 8px 20px rgba(46, 111, 64, 0.25);
-        }
-
-        .btn-main:hover {
-            background: #3b8c52;
-            color: var(--text-light);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            padding: 12px 28px;
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: var(--transition);
-            backdrop-filter: var(--glass-blur);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary-accent);
-            background: rgba(46, 111, 64, 0.1);
-            transform: translateY(-3px);
-        }
-
-        /* إطار الصورة الشخصية الفاخر مع تفعيل خاصية الـ Tilt ثلاثي الأبعاد */
-        .profile-img-container {
-            position: relative;
-            width: 100%;
-            max-width: 340px;
-            margin: 0 auto;
-            border-radius: 20px;
-            padding: 10px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            backdrop-filter: var(--glass-blur);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            transition: border-color 0.4s, background 0.4s, box-shadow 0.4s;
-            transform-style: preserve-3d;
-            will-change: transform;
-        }
-
-        .profile-img-container:hover {
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
-            box-shadow: 0 30px 60px rgba(46, 111, 64, 0.2);
-        }
-
-        .profile-img {
-            width: 100%;
-            height: auto;
-            max-height: 420px;
-            object-fit: cover;
-            border-radius: 14px;
-            display: block;
-            transform: translateZ(20px);
-        }
-
-        .glass-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 30px 24px;
-            backdrop-filter: var(--glass-blur);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: var(--transition);
-        }
-
-        .glass-card:hover {
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
-        }
-
-        /* ==========================================
-           6. الإحصائيات (Stats Bar)
-           ========================================== */
-        .stats-section {
-            padding: 40px 5%;
-            background: rgba(22, 30, 26, 0.5);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            text-align: center;
-            backdrop-filter: var(--glass-blur);
-        }
-
-        .stat-box h3 {
-            font-size: 2.6rem;
-            color: var(--accent-gold);
-            line-height: 1;
-            margin-bottom: 6px;
-            font-weight: 900;
-        }
-
-        .stat-box p {
-            color: var(--text-subtle);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* ==========================================
-           7. الأقسام والخدمات
-           ========================================== */
-        .section-padding {
-            padding: 90px 5%;
-            position: relative;
-        }
-
-        .section-title-wrap {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .sub-title {
-            color: var(--accent-gold);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .main-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .service-icon {
-            font-size: 1.8rem;
-            color: #5bb373;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        .service-card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 12px;
-            color: var(--text-light);
-            font-weight: 700;
-        }
-
-        .service-card p {
-            color: var(--text-subtle);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        /* ==========================================
-           8. التسلسل الزمني للخبرات (Timeline)
-           ========================================== */
-        .timeline {
-            position: relative;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 10px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 50%;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--primary-accent), var(--accent-gold), transparent);
-            transform: translateX(50%);
-        }
-
-        .timeline-item {
-            margin-bottom: 35px;
-            position: relative;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            right: 0;
-            padding-left: 35px;
-            text-align: left;
-        }
-
-        .timeline-item:nth-child(even) {
-            right: 50%;
-            padding-right: 35px;
-            text-align: right;
-        }
-
-        .timeline-dot {
-            width: 16px;
-            height: 16px;
-            background: var(--bg-deep);
-            border: 3px solid var(--accent-gold);
-            border-radius: 50%;
-            position: absolute;
-            top: 15px;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot { left: -8px; }
-        .timeline-item:nth-child(even) .timeline-dot { right: -8px; }
-
-        .timeline-year {
-            display: inline-block;
-            color: var(--accent-gold);
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
-        }
-
-        /* ==========================================
-           9. المؤهلات ومعرض الأعمال
-           ========================================== */
-        .academic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .grade-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(46, 111, 64, 0.2);
-            color: #5bb373;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            border: 1px solid rgba(46, 111, 64, 0.4);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .portfolio-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .btn-link {
-            color: #5bb373;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .btn-link:hover {
-            color: var(--accent-gold);
-            transform: translateX(-5px);
-        }
-
-        /* ==========================================
-           10. قسم التواصل والأيقونات
-           ========================================== */
-        .contact-box {
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
-        .social-icons-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .icon-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-size: 1.2rem;
-            transition: var(--transition);
-            position: relative;
-            backdrop-filter: var(--glass-blur);
-        }
-
-        .icon-card:hover {
-            transform: translateY(-5px) scale(1.08);
-            border-color: var(--accent-gold);
-            box-shadow: 0 10px 20px rgba(224, 169, 109, 0.25);
-        }
-
-        .icon-card.whatsapp:hover { color: #25D366; border-color: #25D366; }
-        .icon-card.telegram:hover { color: #229ED9; border-color: #229ED9; }
-        .icon-card.linkedin:hover { color: #0A66C2; border-color: #0A66C2; }
-
-        .icon-tooltip {
-            position: absolute;
-            bottom: -28px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-subtle);
-            white-space: nowrap;
-            opacity: 0;
-            transition: var(--transition);
-            pointer-events: none;
-        }
-
-        .icon-card:hover .icon-tooltip {
-            opacity: 1;
-            bottom: -32px;
-        }
-
-        footer {
-            padding: 30px 5%;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            color: var(--text-subtle);
-            font-size: 0.85rem;
-            background: rgba(15, 20, 18, 0.9);
-        }
-
-        /* ==========================================
-           11. التجاوب المحسّن للهواتف
-           ========================================== */
-        @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-btns, .badge-seller { justify-content: center; }
-            .hero-desc { margin-left: auto; margin-right: auto; }
-            .hero-title { font-size: 2.5rem; }
-            .stats-section { grid-template-columns: repeat(2, 1fr); }
-            
-            .timeline::before { right: 16px; }
-            .timeline-item {
-                width: 100% !important;
-                padding-right: 45px !important;
-                padding-left: 0 !important;
-                text-align: right !important;
-            }
-            .timeline-item:nth-child(even) { right: 0; }
-            .timeline-dot { right: 8px !important; left: auto !important; }
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 12px 4%; }
-            .nav-menu {
-                position: fixed;
-                top: 65px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 65px);
-                background: rgba(15, 20, 18, 0.98);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 25px;
-                transition: var(--transition);
-                backdrop-filter: var(--glass-blur);
-            }
-            .nav-menu.active { right: 0; }
-            .mobile-toggle { display: block; }
-            .btn-header { display: none; }
-
-            .hero { padding: 100px 4% 40px; min-height: auto; }
-            .hero-title { font-size: 2.1rem; }
-            .hero-desc { font-size: 1rem; }
-            
-            .main-title { font-size: 2rem; }
-            .section-padding { padding: 70px 4%; }
-            
-            .stats-section { grid-template-columns: 1fr; gap: 15px; }
-            .stat-box h3 { font-size: 2.2rem; }
-            
-            .btn-main, .btn-outline { width: 100%; text-align: center; justify-content: center; padding: 12px 20px; font-size: 0.9rem; }
-            .hero-btns { flex-direction: column; width: 100%; }
-            
-            .contact-box h2 { font-size: 2rem !important; }
-            .icon-card { width: 46px; height: 46px; font-size: 1rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -708,6 +40,8 @@
             <li><a href="#experience" onclick="toggleMenu()">الخبرات</a></li>
             <li><a href="#degrees" onclick="toggleMenu()">المؤهلات</a></li>
             <li><a href="#portfolio" onclick="toggleMenu()">الأعمال</a></li>
+            <li><a href="#products" onclick="toggleMenu()">المنتجات الرقمية</a></li>
+            <li><a href="#testimonials" onclick="toggleMenu()">التقييمات</a></li>
         </ul>
         <a href="#contact" class="btn-header hover-trigger">تواصل معي</a>
     </header>
@@ -886,7 +220,7 @@
         </div>
     </section>
 
-   <!-- معرض الأعمال -->
+    <!-- معرض الأعمال -->
     <section id="portfolio" class="section-padding">
         <div class="section-title-wrap">
             <span class="sub-title">أرشيف الإبداع</span>
@@ -898,28 +232,116 @@
                     <h3 style="margin-bottom: 8px; font-size: 1.25rem;">موقع عاجل للوظائف</h3>
                     <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة مقالات متخصصة في التوظيف ومعايير سوق العمل السعودي.</p>
                 </div>
-                <a href="https://ajel.sa" target="_blank" class="btn-link">زيارة الموقع ←</a>
+                <a href="https://ajeljobs.news/%d8%b1%d9%88%d8%a7%d8%aa%d8%a8-%d8%b4%d8%b1%d9%83%d8%a9-%d8%a7%ل8%ad%d9%84%d9%88%d9%84-%d8%a7%d9%84%d9%85%d9%85%d8%aa%d8%a7%d8%b2%d8%a9-2026-%d9%85%d8%a7-%d9%8a%d9%83%d8%b3%d8%a8%d9%87-%d9%85/" target="_blank" class="btn-link">زيارة الموقع ←</a>
             </div>
             <div class="glass-card portfolio-card hover-trigger">
                 <div>
                     <h3 style="margin-bottom: 8px; font-size: 1.25rem;">مجلة جوك الإلكترونية</h3>
                     <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة مقالات متعمقة في مجالات متنوعة وثقافية.</p>
                 </div>
-                <a href="https://www.jewk.com" target="_blank" class="btn-link">زيارة المجلة ←</a>
+                <a href="https://jawak.com/author/Shurooq1994" target="_blank" class="btn-link">زيارة المجلة ←</a>
             </div>
             <div class="glass-card portfolio-card hover-trigger">
                 <div>
                     <h3 style="margin-bottom: 8px; font-size: 1.25rem;">الملفات التعريفية للشركات</h3>
                     <p style="color: var(--text-subtle); font-size: 0.9rem;">صياغة وتجهيز الملف التعريفي لعدة شركات سعودية وعربية.</p>
                 </div>
-                <span class="btn-link" style="color: var(--text-subtle);">ملفات معتمدة</span>
+                <a href="https://drive.google.com/drive/folders/1swA7KIGaw85VtNnSK-qZk6xtPCh2nVKs" target="_blank" class="btn-link">عرض الملفات ←</a>
             </div>
             <div class="glass-card portfolio-card hover-trigger">
                 <div>
-                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">شركة سليمة نت</h3>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">محتوى شركة سليمة نت</h3>
                     <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة وإعداد المقالات التسويقية والمعلوماتية للشركة.</p>
                 </div>
-                <span class="btn-link" style="color: var(--text-subtle);">أعمال منشورة</span>
+                <a href="https://drive.google.com/drive/folders/1JD-DULtdR2UjICR04iu9DBETuWujAdSG" target="_blank" class="btn-link">عرض النماذج ←</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- بند المنتجات الرقمية (الكتب الإلكترونية x, y, z) -->
+    <section id="products" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">إصدارات وحلول جاهزة</span>
+            <h2 class="main-title">المنتجات الرقمية والكتب</h2>
+        </div>
+        <div class="products-grid">
+            <div class="glass-card product-card hover-trigger">
+                <div class="product-img-box">
+                    <img src="x.png" alt="دليل السيو" class="media-img">
+                </div>
+                <h3>دليل السيو الشامل</h3>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">دليلك العملي لكتابة مقالة متوافقة مع معايير السيو من الصفر إلى النشر[cite: 4].</p>
+            </div>
+            <div class="glass-card product-card hover-trigger">
+                <div class="product-img-box">
+                    <img src="y.png" alt="دليل كاتب المحتوى الحر" class="media-img">
+                </div>
+                <h3>دليل كاتب المحتوى الحر</h3>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">كيف تبني دخلاً مستداماً من الكتابة وتحويل الكتابة الإبداعية لمصدر دخل[cite: 5].</p>
+            </div>
+            <div class="glass-card product-card hover-trigger">
+                <div class="product-img-box">
+                    <img src="z.png" alt="شرح موقع خمسات ومستقل" class="media-img">
+                </div>
+                <h3>دليل خمسات ومستقل</h3>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">دليل التسجيل والتعرف على آلية العمل والربح من منصات العمل الحر[cite: 6].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بند تقييمات العملاء (مستخلص من صور مستقل: نور، أحمد، تهاني) -->
+    <section id="testimonials" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">آراء أعتز بها</span>
+            <h2 class="main-title">تقييمات العملاء</h2>
+        </div>
+        <div class="testimonials-grid">
+            <!-- التقييم الأول -->
+            <div class="glass-card testimonial-card hover-trigger">
+                <div class="stars-wrap">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"عمل رائعة بارك الله في جهودك ووقتك تعامل دائما ومستمر بإذن الله تلتزم بالوقت والمطلوب"</p>
+                <div class="client-info">
+                    <span class="client-name">نور سلطان الشرفاء</span>
+                    <span class="client-platform">مشتري على مستقل[cite: 1]</span>
+                </div>
+            </div>
+
+            <!-- التقييم الثاني -->
+            <div class="glass-card testimonial-card hover-trigger">
+                <div class="stars-wrap">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"ما شاء الله تبارك الله سرعة في الانجاز ودقة في العمل وتعامل ولا أروع أنصح بالتعامل معها"</p>
+                <div class="client-info">
+                    <span class="client-name">أحمد قدورة</span>
+                    <span class="client-platform">مشتري على مستقل[cite: 2]</span>
+                </div>
+            </div>
+
+            <!-- التقييم الثالث -->
+            <div class="glass-card testimonial-card hover-trigger">
+                <div class="stars-wrap">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"انصحح كل شخصص يتعامل معاها صراحه متقنه في عملها والتسليم على الوقت المطلوب شكراً لك استاذة شروق"</p>
+                <div class="client-info">
+                    <span class="client-name">تهاني الحربي</span>
+                    <span class="client-platform">مشتري على مستقل[cite: 3]</span>
+                </div>
             </div>
         </div>
     </section>
@@ -956,137 +378,6 @@
     </footer>
 
     <!-- جافا سكريبت للتأثيرات والحركة -->
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('navMenu');
-            nav.classList.toggle('active');
-        }
-
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-        const hoverTriggers = document.querySelectorAll('.hover-trigger, a, button');
-
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            cursor.style.left = `${cursorX}px`;
-            cursor.style.top = `${cursorY}px`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        hoverTriggers.forEach(trigger => {
-            trigger.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-            trigger.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-        });
-
-        // تأثير الإمالة ثلاثي الأبعاد للصورة الشخصية حصرياً
-        const profileCard = document.getElementById('tilt-profile');
-        if (profileCard) {
-            profileCard.addEventListener('mousemove', (e) => {
-                const rect = profileCard.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                profileCard.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-5px)`;
-            });
-
-            profileCard.addEventListener('mouseleave', () => {
-                profileCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-            });
-        }
-
-        // خلفية الجسيمات التفاعلية
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const particles = [];
-        const particleCount = Math.min(window.innerWidth / 15, 60);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2 + 1;
-                this.color = Math.random() > 0.4 ? 'rgba(196, 139, 159, ' : 'rgba(224, 169, 109, ';
-                this.alpha = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-                let dx = mouseX - this.x;
-                let dy = mouseY - this.y;
-                let dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 100) {
-                    this.x -= (dx / dist) * 0.6;
-                    this.y -= (dy / dist) * 0.6;
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color + this.alpha + ')';
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function drawLines() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(196, 139, 159, ${0.12 - dist / 1200})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            drawLines();
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
-    </script>
+    <script src="js.js" defer></script>
 </body>
 </html>
