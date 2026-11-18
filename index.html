@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>شروق مقداد | كاتبة محتوى وباحثة قانونية</title>
+    
+    <!-- أيقونة المتصفح -->
+    <link rel="icon" type="image/png" href="sh.png">
+
+    <!-- خط تجوال العصري الفاخر (Tajawal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- خلفية شبكة الجسيمات التفاعلية -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- مؤشر ماوس مخصص -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- القائمة العلوية -->
+    <header>
+        <div class="logo-box">
+            <span class="logo-name">شروق مقداد</span>
+            <span class="logo-sub">كاتبة محتوى وباحثة قانونية</span>
+        </div>
+        <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#hero" onclick="toggleMenu()">الرئيسية</a></li>
+            <li><a href="#about" onclick="toggleMenu()">نبذة عني</a></li>
+            <li><a href="#services" onclick="toggleMenu()">الخدمات</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">الخبرات</a></li>
+            <li><a href="#degrees" onclick="toggleMenu()">المؤهلات</a></li>
+            <li><a href="#portfolio" onclick="toggleMenu()">الأعمال</a></li>
+            <li><a href="#products" onclick="toggleMenu()">المنتجات الرقمية</a></li>
+            <li><a href="#testimonials" onclick="toggleMenu()">التقييمات</a></li>
+        </ul>
+        <a href="#contact" class="btn-header hover-trigger">تواصل معي</a>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section id="hero" class="hero">
+        <div class="hero-grid">
+            <div>
+                <div class="badge-seller hover-trigger">
+                    <i class="fa-solid fa-star"></i> بائع مميز على منصات العمل الحر (خمسات ومستقل)
+                </div>
+                <h1 class="hero-title">نحيك الكلمات بـ <span>دقة القانون</span> وشغف الإبداع.</h1>
+                <p class="hero-desc">أساعد العلامات التجارية والشركات في الوصول لجمهورها ومضاعفة أثرها عبر صناعة محتوى تسويقي وقانوني رصين ومحتوى متوافق مع معايير السيو (SEO).</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-main hover-trigger">تواصل معي الآن</a>
+                    <a href="#portfolio" class="btn-outline hover-trigger">نماذج من أعمالي</a>
+                </div>
+            </div>
+
+            <!-- حاوية الصورة الشخصية مع تأثير الإمالة ثلاثي الأبعاد -->
+            <div id="tilt-profile" class="profile-img-container hover-trigger">
+                <img src="sh.png" alt="شروق مقداد" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- شريط الأرقام الإحصائية -->
+    <section class="stats-section">
+        <div class="stat-box hover-trigger">
+            <h3>+1000</h3>
+            <p>مقالة منشورة عبر الشبكة</p>
+        </div>
+        <div class="stat-box hover-trigger">
+            <h3>155+</h3>
+            <p>عميل وخدمة مكتملة</p>
+        </div>
+        <div class="stat-box hover-trigger">
+            <h3>23</h3>
+            <p>وكالة تسويق إلكتروني</p>
+        </div>
+        <div class="stat-box hover-trigger">
+            <h3>+15k</h3>
+            <p>متابع ومؤثرة على LinkedIn</p>
+        </div>
+    </section>
+
+    <!-- نبذة عني -->
+    <section id="about" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">من هي شروق مقداد؟</span>
+            <h2 class="main-title">نبذة عني</h2>
+        </div>
+        <div class="glass-card hover-trigger" style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-subtle); font-size: 1.05rem; line-height: 2;">
+            <p>أنا كاتبة محتوى وباحثة متخصصة، أكرّس خبرتي لمساعدة العلامات التجارية والشركات في تحقيق أهدافها من خلال كتابة محتوى ذكي ينسجم مع هوية العميل ويصل مباشرة للجمهور المستهدف بأي صورة من صور المحتوى.</p>
+            <p style="margin-top: 15px;">إلى جانب نشاطي البارز كبائع مميز على منصات العمل الحر، أحظى بتأثير واسع على شبكات التواصل الاجتماعي ومجتمع العمل الحر بتزويد المتابعين بفنون صياغة المحتوى والبحث القانوني.</p>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">حلول احترافية متكاملة</span>
+            <h2 class="main-title">خدماتي المتميزة</h2>
+        </div>
+        <div class="services-grid">
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-pen-nib service-icon"></i>
+                <h3>المقالات وتوافق SEO</h3>
+                <p>كتابة مقالات متعمقة وغنية متوافقة تماماً مع معايير محركات البحث لضمان تصدر موقعك.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-building service-icon"></i>
+                <h3>الملفات التعريفية للشركات</h3>
+                <p>إعداد بروفايلات الشركات والمؤسسات بنبرة صوت تعكس الفخامة والموثوقية.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-hashtag service-icon"></i>
+                <h3>محتوى منصات التواصل</h3>
+                <p>إعداد الخطط الاستراتيجية وكتابة المحتوى التسويقي الجذاب لمنصات التواصل الاجتماعي.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-lightbulb service-icon"></i>
+                <h3>أسماء العلامات التجارية</h3>
+                <p>ابتكار واختيار أسماء حصرية ومميزة تعبر عن روح العلامة التجارية وتلتصق بالأذهان.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-scale-balanced service-icon"></i>
+                <h3>الأوراق والخطابات القانونية</h3>
+                <p>إعداد الخطابات الرسمية والاتفاقات والأبحاث القانونية والأوراق الحقوقية بدقة وصياغة متينة.</p>
+            </div>
+            <div class="glass-card service-card hover-trigger">
+                <i class="fa-solid fa-file-invoice service-icon"></i>
+                <h3>الأبحاث والتقارير العلمية</h3>
+                <p>صياغة التقارير والأبحاث المتخصصة وتحديداً في القانون الدولي والدراسات الأكاديمية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الخبرات والمشاريع -->
+    <section id="experience" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">مسيرة حافلة بالإنجازات</span>
+            <h2 class="main-title">الخبرات والمشاريع (2020 - 2026)</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2026م</span>
+                    <h4 style="font-size: 1.15rem;">موقع عاجل للوظائف في السعودية</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى ومتخصصة مقالات توظيف وتوجيه مهني.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2025م - 2022م</span>
+                    <h4 style="font-size: 1.15rem;">شركة DT1 للتسويق الإلكتروني</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى ومساعد إداري.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2024م</span>
+                    <h4 style="font-size: 1.15rem;">شركة Uni Scope</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى وصانعة استراتيجيات نصوص.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2023م</span>
+                    <h4 style="font-size: 1.15rem;">منصة Noon</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كتابة المحتوى التسويقي والإعلاني.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2022م</span>
+                    <h4 style="font-size: 1.15rem;">مواقع "الرابح" و "كويتيون في أمريكا"</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كتابة محتوى تقني وتثقيفي متنوع.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card hover-trigger">
+                    <span class="timeline-year">2021م - 2020م</span>
+                    <h4 style="font-size: 1.15rem;">Sky Marketing & أدفكيس</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-subtle);">كاتبة محتوى إعلاني وتجاري.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المؤهلات العلمية -->
+    <section id="degrees" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">الخلفية الأكاديمية والقانونية</span>
+            <h2 class="main-title">الدرجات العلمية والرخص</h2>
+        </div>
+        <div class="academic-grid">
+            <div class="glass-card hover-trigger">
+                <span class="grade-badge">تقدير ممتاز / جيد جداً</span>
+                <h3 style="font-size: 1.4rem; margin-bottom: 8px;">ليسانس حقوق (تخصص قانون)</h3>
+                <p style="color: var(--accent-gold); font-size: 0.85rem; margin-bottom: 12px; font-weight: 700;">جامعة الأزهر بغزة (2012 – 2017)</p>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">حاصلة على رخصة مزاولة مهنة المحاماة بشقيها النظامي والشرعي.</p>
+            </div>
+            <div class="glass-card hover-trigger">
+                <span class="grade-badge">تقدير جيد جداً</span>
+                <h3 style="font-size: 1.4rem; margin-bottom: 8px;">دبلوم الدراسات الفلسطينية</h3>
+                <p style="color: var(--accent-gold); font-size: 0.85rem; margin-bottom: 12px; font-weight: 700;">أكاديمية دراسات اللاجئين - لندن (2020 – 2022)</p>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">إعداد الدراسات والأبحاث والتقارير العلمية وتحديداً في القانون الدولي.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الأعمال -->
+    <section id="portfolio" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">أرشيف الإبداع</span>
+            <h2 class="main-title">أعمال سابقة ومشاريع</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">موقع عاجل للوظائف</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة مقالات متخصصة في التوظيف ومعايير سوق العمل السعودي.</p>
+                </div>
+                <a href="https://ajeljobs.news/%d8%b1%d9%88%d8%a7%d8%aa%d8%a8-%d8%b4%d8%b1%d9%83%d8%a9-%d8%a7%ل8%ad%d9%84%d9%88%d9%84-%d8%a7%d9%84%d9%85%d9%85%d8%aa%d8%a7%d8%b2%d8%a9-2026-%d9%85%d8%a7-%d9%8a%d9%83%d8%b3%d8%a8%d9%87-%d9%85/" target="_blank" class="btn-link">زيارة الموقع ←</a>
+            </div>
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">مجلة جوك الإلكترونية</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة مقالات متعمقة في مجالات متنوعة وثقافية.</p>
+                </div>
+                <a href="https://jawak.com/author/Shurooq1994" target="_blank" class="btn-link">زيارة المجلة ←</a>
+            </div>
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">الملفات التعريفية للشركات</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">صياغة وتجهيز الملف التعريفي لعدة شركات سعودية وعربية.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1swA7KIGaw85VtNnSK-qZk6xtPCh2nVKs" target="_blank" class="btn-link">عرض الملفات ←</a>
+            </div>
+            <div class="glass-card portfolio-card hover-trigger">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.25rem;">محتوى شركة سليمة نت</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.9rem;">كتابة وإعداد المقالات التسويقية والمعلوماتية للشركة.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1JD-DULtdR2UjICR04iu9DBETuWujAdSG" target="_blank" class="btn-link">عرض النماذج ←</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- بند المنتجات الرقمية (الكتب الإلكترونية x, y, z) -->
+    <section id="products" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">إصدارات وحلول جاهزة</span>
+            <h2 class="main-title">المنتجات الرقمية والكتب</h2>
+        </div>
+        <div class="products-grid">
+            <div class="glass-card product-card hover-trigger">
+                <div class="product-img-box">
+                    <img src="x.png" alt="دليل السيو" class="media-img">
+                </div>
+                <h3>دليل السيو الشامل</h3>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">دليلك العملي لكتابة مقالة متوافقة مع معايير السيو من الصفر إلى النشر[cite: 4].</p>
+            </div>
+            <div class="glass-card product-card hover-trigger">
+                <div class="product-img-box">
+                    <img src="y.png" alt="دليل كاتب المحتوى الحر" class="media-img">
+                </div>
+                <h3>دليل كاتب المحتوى الحر</h3>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">كيف تبني دخلاً مستداماً من الكتابة وتحويل الكتابة الإبداعية لمصدر دخل[cite: 5].</p>
+            </div>
+            <div class="glass-card product-card hover-trigger">
+                <div class="product-img-box">
+                    <img src="z.png" alt="شرح موقع خمسات ومستقل" class="media-img">
+                </div>
+                <h3>دليل خمسات ومستقل</h3>
+                <p style="color: var(--text-subtle); font-size: 0.9rem;">دليل التسجيل والتعرف على آلية العمل والربح من منصات العمل الحر[cite: 6].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بند تقييمات العملاء (مستخلص من صور مستقل: نور، أحمد، تهاني) -->
+    <section id="testimonials" class="section-padding">
+        <div class="section-title-wrap">
+            <span class="sub-title">آراء أعتز بها</span>
+            <h2 class="main-title">تقييمات العملاء</h2>
+        </div>
+        <div class="testimonials-grid">
+            <!-- التقييم الأول -->
+            <div class="glass-card testimonial-card hover-trigger">
+                <div class="stars-wrap">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"عمل رائعة بارك الله في جهودك ووقتك تعامل دائما ومستمر بإذن الله تلتزم بالوقت والمطلوب"</p>
+                <div class="client-info">
+                    <span class="client-name">نور سلطان الشرفاء</span>
+                    <span class="client-platform">مشتري على مستقل[cite: 1]</span>
+                </div>
+            </div>
+
+            <!-- التقييم الثاني -->
+            <div class="glass-card testimonial-card hover-trigger">
+                <div class="stars-wrap">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"ما شاء الله تبارك الله سرعة في الانجاز ودقة في العمل وتعامل ولا أروع أنصح بالتعامل معها"</p>
+                <div class="client-info">
+                    <span class="client-name">أحمد قدورة</span>
+                    <span class="client-platform">مشتري على مستقل[cite: 2]</span>
+                </div>
+            </div>
+
+            <!-- التقييم الثالث -->
+            <div class="glass-card testimonial-card hover-trigger">
+                <div class="stars-wrap">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"انصحح كل شخصص يتعامل معاها صراحه متقنه في عملها والتسليم على الوقت المطلوب شكراً لك استاذة شروق"</p>
+                <div class="client-info">
+                    <span class="client-name">تهاني الحربي</span>
+                    <span class="client-platform">مشتري على مستقل[cite: 3]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التواصل -->
+    <section id="contact" class="section-padding">
+        <div class="glass-card contact-box hover-trigger">
+            <span class="sub-title">تواصل وتفاعل</span>
+            <h2 style="font-size: 2.2rem; margin-bottom: 12px;">لنبدأ العمل معاً على مشروعك القادم</h2>
+            <p style="color: var(--text-subtle); font-size: 0.95rem;">اضغط على أي من الأيقونات أدناه للتواصل المباشر معي:</p>
+            
+            <div class="social-icons-wrapper">
+                <a href="https://wa.me/972597305187" target="_blank" class="icon-card whatsapp hover-trigger" title="مراسلة واتساب">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span class="icon-tooltip">00972597305187</span>
+                </a>
+
+                <a href="https://telegram.me/Shurooq_1994" target="_blank" class="icon-card telegram hover-trigger" title="مراسلة تليجرام">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span class="icon-tooltip">Shurooq_1994</span>
+                </a>
+
+                <a href="https://lnkd.in/p/dBNiQ6pC" target="_blank" class="icon-card linkedin hover-trigger" title="حساب LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <span class="icon-tooltip">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <p>© 2026 جميع الحقوق محفوظة لـ شروق مقداد | كاتبة محتوى وباحثة قانونية.</p>
+    </footer>
+
+    <!-- جافا سكريبت للتأثيرات والحركة -->
+    <script src="js.js" defer></script>
+</body>
+</html>
