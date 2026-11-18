@@ -739,7 +739,7 @@ footer {
     .nav-menu.active { right: 0; }
     .mobile-toggle { display: block; }
     .btn-header { display: none; }
-
+   
     .hero { padding: 100px 4% 40px; min-height: auto; }
     .hero-title { font-size: 2.1rem; }
     .hero-desc { font-size: 1rem; }
